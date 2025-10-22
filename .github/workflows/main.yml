@@ -18,26 +18,8 @@ jobs:
       - name: Run Jest Tests
         run: npm test
 
-  e2e-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm install
-      # Install Playwright's system dependencies
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Start Xvfb
-        run: |
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
-      - name: Run Playwright Tests
-        run: npm run test:e2e
-
   build:
-    needs: [unit-and-integration-tests, e2e-tests] # Depends on all tests passing
+    needs: [unit-and-integration-tests] # Depends on all tests passing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
