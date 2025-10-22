@@ -9,7 +9,7 @@
     "test:unit": "jest tests/unit",
     "test:integration": "jest tests/integration",
     "test:e2e": "npx playwright test tests/e2e",
-    "build": "electron-builder"
+    "build": "electron-builder --publish=never"
   },
   "author": "",
   "license": "ISC",
